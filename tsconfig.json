@@ -29,6 +29,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "app/add.tsx", "app/dashboard/page.js", "app/insights/page.js", "app/add/page.js", "components/Card.js", "components/InsightCard.js" , "components/Chart.js", "libs/analytics.js", "libs/prediction.js", "libs/storage.js", "components/Navbar.js" ],
   "exclude": ["node_modules"]
 }
+  

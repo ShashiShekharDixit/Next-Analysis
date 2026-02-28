@@ -1,0 +1,41 @@
+body {
+  background: #0f172a;
+  color: white;
+  font-family: Arial;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-top: 100px;
+}
+
+button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6366f1, #22c55e);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+}
+
+.insight {
+  background: #1e293b;
+  padding: 20px;
+  margin-top: 20px;
+}
