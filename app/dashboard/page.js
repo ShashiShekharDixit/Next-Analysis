@@ -19,8 +19,9 @@ export default function Dashboard() {
       <h1>Dashboard</h1>
 
       <div className="grid">
-        <Card title="Average Score" value={stats.avg} />
-        <Card title="Consistency" value={stats.consistency + "%"} />
+        <Card title="Average Score" value={stats.avg} icon="📊" />
+        <Card title="Consistency" value={stats.consistency + "%"} icon="🔥" />
+        <Card title="Streak" value={stats.streak + " days"} icon="⚡" />
       </div>
     </div>
   );
