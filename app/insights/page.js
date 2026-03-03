@@ -1,23 +1,44 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getEntries } from "../../lib/storage";
-import { predict } from "../../lib/prediction";
-import InsightCard from "../../components/InsightCard";
+import { getEntries } from "../../libs/storage";
+import { predict } from "../../libs/prediction";
+import Navbar from "../../components/Navbar";
 
 export default function Insights() {
   const [text, setText] = useState("");
+  const [tips, setTips] = useState([]);
 
   useEffect(() => {
     const data = getEntries();
-    const result = predict(data);
-    setText(result);
+    setText(predict(data));
+
+    setTips([
+      "Stay consistent above 7 score",
+      "Avoid long breaks in tracking",
+      "Focus on one category at a time"
+    ]);
   }, []);
 
   return (
-    <div>
-      <h1>Insights</h1>
-      <InsightCard text={text} />
-    </div>
+    <>
+      <Navbar />
+
+      <div className="container">
+        <h1>Insights</h1>
+
+        <div className="card">
+          <h3>Prediction</h3>
+          <p>{text}</p>
+        </div>
+
+        <div className="card" style={{ marginTop: "20px" }}>
+          <h3>Improvement Tips</h3>
+          {tips.map((t, i) => (
+            <p key={i}>• {t}</p>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }

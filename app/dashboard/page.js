@@ -1,28 +1,43 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { getEntries } from "../../libs/storage";
-import { getStats } from "../../libs/analytics";
-import Card from "../../components/Card";
+import { getAdvancedStats } from "../../libs/analytics";
+import StatsGrid from "../../components/StatsGrid";
+import RecentEntries from "../../components/RecentEntries";
+import CategoryBreakdown from "../../components/CategoryBreakdown";
+import QuickActions from "../../components/QuickActions";
+import Navbar from "../../components/Navbar";
 
 export default function Dashboard() {
+  const [data, setData] = useState([]);
   const [stats, setStats] = useState({});
 
   useEffect(() => {
-    const data = getEntries();
-    const result = getStats(data);
+    const entries = getEntries();
+    setData(entries);
+
+    const result = getAdvancedStats(entries);
     setStats(result);
   }, []);
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <>
+      <Navbar />
 
-      <div className="grid">
-        <Card title="Average Score" value={stats.avg} icon="📊" />
-        <Card title="Consistency" value={stats.consistency + "%"} icon="🔥" />
-        <Card title="Streak" value={stats.streak + " days"} icon="⚡" />
+      <div className="container">
+        <h1>Dashboard</h1>
+
+        <StatsGrid stats={stats} />
+
+        <div className="grid" style={{ marginTop: "30px" }}>
+          <RecentEntries data={data} />
+          <CategoryBreakdown categories={stats.categories || {}} />
+        </div>
+
+        <div style={{ marginTop: "30px" }}>
+          <QuickActions />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
