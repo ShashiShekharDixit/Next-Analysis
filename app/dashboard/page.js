@@ -7,6 +7,9 @@ import RecentEntries from "../../components/RecentEntries";
 import CategoryBreakdown from "../../components/CategoryBreakdown";
 import QuickActions from "../../components/QuickActions";
 import Navbar from "../../components/Navbar";
+import Heatmap from "../../components/Heatmap";
+import ActivityTimeline from "../../components/ActivityTimeline";
+import BarChart from "../../components/BarChart";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
@@ -36,6 +39,19 @@ export default function Dashboard() {
 
         <div style={{ marginTop: "30px" }}>
           <QuickActions />
+        </div>
+
+        <div className="grid">
+          <RecentEntries data={data} />
+          <ActivityTimeline data={data} />
+        </div>
+
+        <div style={{ marginTop: "30px" }}>
+          <Heatmap data={data} />
+        </div>
+
+        <div style={{ marginTop: "30px" }}>
+          <BarChart data={data.slice(-7)} />
         </div>
       </div>
     </>

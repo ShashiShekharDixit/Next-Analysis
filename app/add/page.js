@@ -9,6 +9,8 @@ export default function Add() {
   const [note, setNote] = useState("");
 
   const handleSubmit = () => {
+    if (!score) return alert("Score required");
+
     const entry = {
       date: new Date().toISOString(),
       score: Number(score),
@@ -24,24 +26,28 @@ export default function Add() {
     <div className="container">
       <h1>Add Entry</h1>
 
-      <input
-        type="number"
-        placeholder="Score (1-10)"
-        onChange={(e) => setScore(e.target.value)}
-      />
+      <div className="glass-form">
+        <input
+          type="number"
+          placeholder="Score (1–10)"
+          onChange={(e) => setScore(e.target.value)}
+        />
 
-      <select onChange={(e) => setCategory(e.target.value)}>
-        <option>Fitness</option>
-        <option>Work</option>
-        <option>Mind</option>
-      </select>
+        <select onChange={(e) => setCategory(e.target.value)}>
+          <option>Fitness</option>
+          <option>Work</option>
+          <option>Mind</option>
+        </select>
 
-      <input
-        placeholder="Notes..."
-        onChange={(e) => setNote(e.target.value)}
-      />
+        {/* 🔥 IMPROVED NOTES */}
+        <textarea
+          className="notes"
+          placeholder="Write what actually happened today..."
+          onChange={(e) => setNote(e.target.value)}
+        />
 
-      <button onClick={handleSubmit}>Save</button>
+        <button onClick={handleSubmit}>Save Entry</button>
+      </div>
     </div>
   );
 }
